@@ -22,7 +22,7 @@ export async function POST(request) {
         nombre: body.nombre,
         precio: Number(body.precio),
         stock: Number(body.stock),
-      },
+      },  
     });
     return NextResponse.json({ message: "Producto creado", producto: nuevo });
   } catch (error) {

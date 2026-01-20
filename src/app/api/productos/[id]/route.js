@@ -37,15 +37,12 @@ export async function PUT(request, { params }) {
 // Eliminar producto
 export async function DELETE(request, { params }) {
   try {
-    const id = parseInt(params.id);
-
-    if (isNaN(id)) {
-      return NextResponse.json({ error: "ID inválido" }, { status: 400 });
-    }
-
-    await prisma.producto.delete({ where: { id } });
-
-    return NextResponse.json({ message: "Producto eliminado correctamente" });
+    const productdelete= await prisma.producto.delete({ 
+      where: {
+         id:Number(params.id),
+        },
+      });
+    return NextResponse.json(productdelete,{ message: "Producto eliminado correctamente" });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
